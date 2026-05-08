@@ -1,0 +1,13 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = []
+        res = [0]*len(temperatures)
+
+        for i, temp in enumerate(temperatures):
+            print(stack)
+            while (stack and temp > stack[-1][0]):
+                print("popping:", stack[-1][0], "days waited:", i - stack[-1][1])
+                res[stack[-1][1]] = i - stack[-1][1]
+                stack.pop()
+            stack.append([temp, i])
+        return res
